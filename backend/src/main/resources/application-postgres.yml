@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/airbnb
+    driver-class-name: org.postgresql.Driver
+    username: airbnb
+    password: airbnb
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

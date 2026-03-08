@@ -1,0 +1,68 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #222;
+  background: #f7f7f7;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 16px 20px;
+}
+
+.header h1 { color: #ff385c; }
+.header nav { display: flex; gap: 16px; }
+.header a { text-decoration: none; color: #222; }
+
+.search {
+  margin: 24px 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 12px;
+  background: white;
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.search input, .search button {
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+
+.search button {
+  background: #ff385c;
+  color: white;
+  border: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.image {
+  height: 150px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff8fa3, #5ec8f8);
+}
