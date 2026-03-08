@@ -7,9 +7,16 @@ A scalable Airbnb-like reference implementation with:
 - `docs/`: HLD and LLD architecture documents.
 
 ## Run backend
+Default mode uses in-memory H2 (no external database required):
 ```bash
 cd backend
 mvn spring-boot:run
+```
+
+Use PostgreSQL profile when your DB is available:
+```bash
+cd backend
+mvn spring-boot:run -Dspring-boot.run.profiles=postgres
 ```
 
 ## Run frontend
