@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: airbnb-clone-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/airbnb
+    username: airbnb
+    password: airbnb
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+server:
+  port: 8080
