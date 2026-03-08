@@ -4,7 +4,6 @@ import com.airbnb.clone.application.port.ListingRepositoryPort;
 import com.airbnb.clone.domain.model.Listing;
 import com.airbnb.clone.infrastructure.persistence.entity.ListingEntity;
 import com.airbnb.clone.infrastructure.persistence.repository.SpringDataListingRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,9 +11,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-@RequiredArgsConstructor
 public class ListingRepositoryAdapter implements ListingRepositoryPort {
     private final SpringDataListingRepository repository;
+
+    public ListingRepositoryAdapter(SpringDataListingRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Listing save(Listing listing) {
@@ -40,15 +42,15 @@ public class ListingRepositoryAdapter implements ListingRepositoryPort {
     }
 
     private ListingEntity toEntity(Listing listing) {
-        return ListingEntity.builder()
-                .id(listing.id())
-                .hostId(listing.hostId())
-                .title(listing.title())
-                .location(listing.location())
-                .nightlyRate(listing.nightlyRate())
-                .maxGuests(listing.maxGuests())
-                .active(listing.active())
-                .build();
+        return new ListingEntity(
+                listing.id(),
+                listing.hostId(),
+                listing.title(),
+                listing.location(),
+                listing.nightlyRate(),
+                listing.maxGuests(),
+                listing.active()
+        );
     }
 
     private Listing toDomain(ListingEntity entity) {

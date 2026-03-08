@@ -4,13 +4,15 @@ import com.airbnb.clone.application.port.ReservationRepositoryPort;
 import com.airbnb.clone.domain.model.Reservation;
 import com.airbnb.clone.infrastructure.persistence.entity.ReservationEntity;
 import com.airbnb.clone.infrastructure.persistence.repository.SpringDataReservationRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class ReservationRepositoryAdapter implements ReservationRepositoryPort {
     private final SpringDataReservationRepository repository;
+
+    public ReservationRepositoryAdapter(SpringDataReservationRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Reservation save(Reservation reservation) {
@@ -19,15 +21,15 @@ public class ReservationRepositoryAdapter implements ReservationRepositoryPort {
     }
 
     private ReservationEntity toEntity(Reservation reservation) {
-        return ReservationEntity.builder()
-                .id(reservation.id())
-                .listingId(reservation.listingId())
-                .guestId(reservation.guestId())
-                .checkIn(reservation.checkIn())
-                .checkOut(reservation.checkOut())
-                .totalPrice(reservation.totalPrice())
-                .status(reservation.status())
-                .build();
+        return new ReservationEntity(
+                reservation.id(),
+                reservation.listingId(),
+                reservation.guestId(),
+                reservation.checkIn(),
+                reservation.checkOut(),
+                reservation.totalPrice(),
+                reservation.status()
+        );
     }
 
     private Reservation toDomain(ReservationEntity entity) {
